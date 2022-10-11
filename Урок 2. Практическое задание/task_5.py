@@ -19,3 +19,24 @@
 
 Допускается исп-е встроенных ф-ций
 """
+
+
+def codes_print(start=32):
+    if start > 127:
+        return
+    row_print(start)
+    start += 10
+    return codes_print(start)
+
+
+def row_print(start, x=1):
+    if x > 10 or start > 127:
+        return print('\n')
+
+    print(f'{start} - {chr(start)} ', end='')
+    start += 1
+    x += 1
+    return row_print(start, x)
+
+
+codes_print()

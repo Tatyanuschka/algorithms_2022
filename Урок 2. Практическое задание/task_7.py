@@ -13,3 +13,12 @@
 
 Решите через рекурсию. В задании нельзя применять циклы.
 """
+
+
+def formula_proof(num):
+    if num == 1:
+        return 1
+    return num + formula_proof(num - 1)
+
+
+print(formula_proof(30) == 30 * (30 + 1) / 2)

@@ -18,3 +18,15 @@
 Не забудьте проверить на числе, которое оканчивается на 0.
 1230 -> 0321
 """
+
+
+def flip_number(num, flip_num=''):
+    if num == 0:
+        return print(f'Перевернутое - {int(flip_num)}')
+
+    flip_num = flip_num + str(num % 10)
+    num = num // 10
+    return flip_number(num, flip_num)
+
+
+flip_number(int(input('Число - ')))

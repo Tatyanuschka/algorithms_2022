@@ -27,3 +27,54 @@
 Вы вместо трехзначного числа ввели строку (((. Исправьтесь
 Введите операцию (+, -, *, / или 0 для выхода):
 """
+
+
+def calculator():
+    operation = check_operation()
+    bool_num2 = True
+    if operation == '0':
+        return
+    num1 = check_number('Введите первое число: ')
+    while bool_num2:
+        num2 = check_number('Введите второе число: ')
+        if operation == '/' and num2 == 0:
+            print('Делить на ноль нельзя, введите другое число')
+        else:
+            bool_num2 = False
+    res = calc_func(num1, num2, operation)
+    print(f'Ваш результат: {res}')
+    return calculator()
+
+
+def check_number(txt):
+    checking = True
+    while checking:
+        try:
+            num = int(input(txt))
+        except:
+            print('Вы ввели не число')
+        else:
+            return num
+
+
+def calc_func(num1, num2, num_operator):
+    op_dict = {'+': lambda x, y: x + y,
+               '-': lambda x, y: x - y,
+               '*': lambda x, y: x * y,
+               '/': lambda x, y: x / y, }
+    return op_dict[num_operator](num1, num2)
+
+
+def check_operation():
+    input_request = True
+    if not input_request:
+        return
+    operation = str(input('Введите операцию (+, -, *, / или 0 для выхода):'))
+    if operation not in ('0', '+', '-', '*', '/'):
+        print('Введен неверный знак операции. Попробуйте еще раз')
+        check_operation()
+    else:
+        return operation
+
+
+calculator()

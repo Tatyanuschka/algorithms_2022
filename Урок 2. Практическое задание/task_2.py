@@ -17,3 +17,20 @@
 Введите число: 123
 Количество четных и нечетных цифр в числе равно: (1, 2)
 """
+
+
+def even_odd_amount(num, even_count=0, odd_count=0):
+    if num == 0:
+        return print(f'Количество четных и нечетных цифр в числе равно: {(even_count, odd_count)}')
+
+    remain_num = num % 10
+
+    if remain_num % 2 == 0:
+        even_count += 1
+    else:
+        odd_count += 1
+    num = num // 10
+    return even_odd_amount(num, even_count, odd_count)
+
+
+even_odd_amount(int(input('введите число: ')))
