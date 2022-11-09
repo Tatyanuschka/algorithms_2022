@@ -28,3 +28,38 @@
 Предприятия, с прибылью выше среднего значения: Рога
 Предприятия, с прибылью ниже среднего значения: Копыта
 """
+
+from collections import namedtuple
+from statistics import mean
+
+companies = namedtuple('Comp', 'name total_profit')
+
+comp_amount = int(input('Введите количество компаний: '))
+
+a = {}
+for i in range(comp_amount):
+    comp_name = input('Введите название компании: ')
+    profit = input('Введите через пробел прибыль компании за 4 квартала: ')
+    profit_sum = sum(int(x) for x in profit.split(' '))
+    comp = companies(
+        name = comp_name,
+        total_profit = profit_sum)
+    a[comp.name] = comp.total_profit
+
+average_profit = mean(a.values())
+comp_statistic = {'above_average': [], 'under_average': []}
+for key, val in a.items():
+    if val > average_profit:
+        comp_statistic['above_average'].append(key)
+    elif val < average_profit:
+        comp_statistic['under_average'].append(key)
+
+print(f'Средняя годовая прибыль всех предприятий: {average_profit}')
+print(f"Предприятия, с прибылью выше среднего значения: {', '.join(comp_statistic['above_average'])}")
+print(f"Предприятия, с прибылью ниже среднего значения: {', '.join(comp_statistic['under_average'])}")
+
+
+
+
+
+
