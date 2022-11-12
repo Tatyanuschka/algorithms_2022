@@ -40,6 +40,7 @@
 from memory_profiler import profile
 from pympler import asizeof
 
+
 class Road:
 
     @profile
