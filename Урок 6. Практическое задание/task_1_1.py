@@ -59,6 +59,7 @@ def currency_get():
         currency_rate[currency_name] = (value, nominal)
     return currency_rate
 
+   
 @profile
 def currency_rates(currency_name):
     """ function to print the value of certain currency"""
@@ -69,6 +70,7 @@ def currency_rates(currency_name):
     else:
         print('Такой валюты не существует')
 
+      
 # проверяем использование памяти через декоратор с использованием memory_usage
 def decor(func):
     def wrapper(*args, **kwargs):
@@ -79,6 +81,7 @@ def decor(func):
         return res, mem_diff
     return wrapper
 
+   
 @decor
 def currency_get2():
     """function to get the list of names and values of all currencies for today"""
@@ -93,6 +96,7 @@ def currency_get2():
         currency_rate[currency_name] = (value, nominal)
     return currency_rate
 
+   
 @decor
 def currency_rates2(currency_name):
     """ function to print the value of certain currency"""
@@ -124,6 +128,7 @@ def currency_get3():
 
         yield currency_rate(currency_name, (value, nominal))
 
+        
 @decor
 def currency_rates3(currency_name):
     """ function to print the value of certain currency"""
