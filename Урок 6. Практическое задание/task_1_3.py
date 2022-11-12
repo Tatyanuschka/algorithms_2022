@@ -74,18 +74,21 @@ def func_4(nums):
     nums_even = list(filter(lambda x: x % 2 == 0, nums))
     return list(map(lambda x: nums.index(x), nums_even))
 
+
 """
 AFTER optimization
 использование генератора, т.к. генератор занимает в разы меньше памяти,
 чем список:
 6296 -- > 816
 
-По profile разницы не видно
+По profile видно разницу по количеству вхождений (Occurances)
 """
+
 @profile
 def func_5(nums):
     new_gen = (key for key, val in enumerate(nums) if not val % 2)
     return new_gen
+
 
 num_list = sample(range(1, 100000), 300)
 func_1(num_list)
