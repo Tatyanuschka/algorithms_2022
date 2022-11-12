@@ -39,8 +39,6 @@
 для костюма(2*H + 0.3). Проверить работу этих методов на реальных данных.
 Выполнить общий подсчёт расхода ткани. Проверить на практике полученные на этом уроке знания.
 Реализовать абстрактные классы для основных классов проекта и проверить работу декоратора @property.
-
-
 """
 from abc import ABC, abstractmethod
 from memory_profiler import profile
@@ -48,8 +46,6 @@ from pympler import asizeof
 
 
 #BEFORE OPTIMIZATION
-
-
 class Cloth(ABC):
     expense_count = 0
 
@@ -60,15 +56,12 @@ class Cloth(ABC):
 
 class Coat(Cloth):
 
-
     def __init__(self, v):
         self.v = v
         Coat.expense_count += self.expense
 
-
     def __str__(self):
         return f'Для пальто размером {self.v} требуется ткань в кол-ве {self.expense}, общий расход = {Coat.expense_count:.02f}'
-
 
     @property
     def expense(self):
@@ -81,10 +74,8 @@ class Suit(Cloth):
         self.h = h
         Suit.expense_count += self.expense
 
-
     def __str__(self):
         return f'Для костюма размером {self.h} требуется ткань в кол-ве {self.expense}, общий расход = {Suit.expense_count:.02f}'
-
 
     @property
     def expense(self):
@@ -94,7 +85,7 @@ class Suit(Cloth):
 """
 AFTER optimization
 уменьшение занимаемой оперативной памяти
-за счет slots в ООП
+за счет __slots__ в ООП
 """
 
 class Coat2:
@@ -107,10 +98,8 @@ class Coat2:
         self.v = v
         Coat2.expense_count += self.expense
 
-
     def __str__(self):
         return f'Для пальто размером {self.v} требуется ткань в кол-ве {self.expense}, общий расход = {Coat2.expense_count:.02f}'
-
 
     @property
     def expense(self):
@@ -127,10 +116,8 @@ class Suit2:
         self.h = h
         Suit2.expense_count += self.expense
 
-
     def __str__(self):
         return f'Для костюма размером {self.h} требуется ткань в кол-ве {self.expense}, общий расход = {Suit2.expense_count:.02f}'
-
 
     @property
     def expense(self):
