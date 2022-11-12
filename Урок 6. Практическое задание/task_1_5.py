@@ -29,4 +29,46 @@
 генераторы, numpy, использование слотов, применение del, сериализация и т.д.
 
 Это файл для пятого скрипта
+Курс Алгоритмы и структуры Python: Урок 9, задание 2
+
+Реализовать класс Road (дорога).
+определить атрибуты: length (длина), width (ширина);
+значения атрибутов должны передаваться при создании экземпляра класса;
+атрибуты сделать защищёнными;
+определить метод расчёта массы асфальта, необходимого для покрытия всей дороги;
 """
+from memory_profiler import profile
+from pympler import asizeof
+
+class Road:
+
+    @profile
+    def __init__(self, length, width):
+        self._length = length
+        self._width = width
+
+    @profile
+    def mass_calc(self, mass_one_meter=25, thick=5):
+        return self._width * self._length * mass_one_meter * thick / 1000
+
+
+class Road2:
+
+    __slots__ = '_length', '_width'
+
+    @profile
+    def __init__(self, length, width):
+        self._length = length
+        self._width = width
+
+    @profile
+    def mass_calc(self, mass_one_meter=25, thick=5):
+        return self._width * self._length * mass_one_meter * thick / 1000
+
+
+road = Road(100, 20)
+print(road.mass_calc())
+road2 = Road2(100, 20)
+print(road2.mass_calc())
+print(f'Размер объекта до оптимизации = {asizeof.asizeof(road)}')
+print(f'Размер объекта после оптимизации = {asizeof.asizeof(road2)}')

@@ -9,3 +9,34 @@
 Опищите эту проблему и найдите простой путь ее решения.
 Опишите этот путь и покажите его применение
 """
+from memory_profiler import profile
+
+
+@profile
+def wrapper(num):
+    def even_odd_amount(num, even_count=0, odd_count=0):
+        if num == 0:
+            return print(f'Количество четных и нечетных цифр в числе равно: {(even_count, odd_count)}')
+
+
+        remain_num = num % 10
+
+        if remain_num % 2 == 0:
+            even_count += 1
+        else:
+            odd_count += 1
+        num = num // 10
+        return even_odd_amount(num, even_count, odd_count)
+
+    return even_odd_amount(num, even_count=0, odd_count=0)
+
+
+wrapper(int(input('введите число: ')))
+
+"""
+сама не догадалась, была подсказка на вебинаре.
+Суть стала понятна. Рекурсию необходимо обернуть внешней функцией, которая принимает основной
+аргумент из рекурсивной функцией и возвращает также рекурсивную функцию.
+Изначально проблема была в том, что профилирование рекурсивной функции без 'обертки'
+происходило количество раз, равное количеству вызовов рекурсии.
+"""

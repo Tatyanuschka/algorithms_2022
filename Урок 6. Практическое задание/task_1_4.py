@@ -29,4 +29,49 @@
 генераторы, numpy, использование слотов, применение del, сериализация и т.д.
 
 Это файл для четвертого скрипта
+Курс Алгоритмы и структуры Python: Урок 3, задание 1
+
+Написать функцию num_translate(), переводящую числительные от 0 до 10 c английского на русский язык.
 """
+
+from memory_profiler import profile, memory_usage
+
+
+@profile
+def num_translate(n):
+    """translate numbers from English to Russian
+    :type my_dict: object
+    """
+    my_dict = {
+        'zero': 'ноль',
+        'one': 'один',
+        'two': 'два',
+        'three': 'три',
+        'four': 'четыре',
+        'five': 'пять',
+        'six': 'шесть',
+        'seven': 'семь',
+        'eight': 'восемь',
+        'nine': 'девять',
+        'ten': 'десять'
+    }
+    return my_dict.get(n) if n.islower() else my_dict.get(n.lower()).capitalize()
+
+
+"""
+AFTER optimization
+использование кортежей вместо словаря
+"""
+
+
+@profile
+def num_translate2(n):
+    """translate numbers from English to Russian"""
+
+    numb_eng = ('zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten')
+    numb_rus = ('ноль', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять', 'десять')
+    return numb_rus[numb_eng.index(n)] if n.islower() else numb_rus[numb_eng.index(n)].get(n.lower()).capitalize()
+
+
+num_translate('two')
+num_translate2('two')
