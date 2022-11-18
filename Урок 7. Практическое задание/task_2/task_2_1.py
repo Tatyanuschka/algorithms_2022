@@ -55,14 +55,14 @@ if __name__ == '__main__':
 
     m = int(input('Введите число m - '))
     rand_lst = [randint(-100, 100) for _ in range(m * 2 + 1)]
-    print(f"Сорт-ка Шелла - {timeit('shell_sort(rand_lst[:])[m]', globals=globals(), number=10000)}")
-    print(f"Гномья сорт-ка - {timeit('gnome_sort(rand_lst[:])[m]', globals=globals(), number=10000)}")
+    print(f"Сортировка Шелла - {timeit('shell_sort(rand_lst[:])[m]', globals=globals(), number=10000)}")
+    print(f"Гномья сортировка - {timeit('gnome_sort(rand_lst[:])[m]', globals=globals(), number=10000)}")
 
 
 """
 Введите число m - 10
-Сорт-ка Шелла - 0.12067050009500235
-Гномья сорт-ка - 0.2088970000622794
+Сортировка Шелла - 0.12067050009500235
+Гномья сортировка - 0.2088970000622794
 
 Введите число m - 100
 Сорт-ка Шелла - 2.3972766998922452

@@ -63,8 +63,10 @@ print(f'Отсортированный массив после оптимиза�
 print(f"Время bubble_sort - {timeit('bubble_sort(rand_lst[:])', globals=globals(), number=10000)}")
 print(f"Время bubble_sort_smart - {timeit('bubble_sort_smart(rand_lst[:])', globals=globals(), number=10000)}")
 
-print(f"Время bubble_sort на уже отсорт.списке - {timeit('bubble_sort(rand_lst_sorted[:])', globals=globals(), number=10000)}")
-print(f"Время bubble_sort_smart на уже отсорт.списке - {timeit('bubble_sort_smart(rand_lst_sorted[:])', globals=globals(), number=10000)}")
+print(f"Время bubble_sort на уже отсорт.списке - "
+      f"{timeit('bubble_sort(rand_lst_sorted[:])', globals=globals(), number=10000)}")
+print(f"Время bubble_sort_smart на уже отсорт.списке - "
+      f"{timeit('bubble_sort_smart(rand_lst_sorted[:])', globals=globals(), number=10000)}")
 
 
 """
