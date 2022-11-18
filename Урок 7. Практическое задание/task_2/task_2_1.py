@@ -37,20 +37,43 @@ def shell_sort(lst):
     return lst
 
 
-def median_search(lst):
-    lst = shell_sort(lst)
-    return lst[int((len(lst)-1)/2)]
+# гномья сортировка
+def gnome_sort(lst):
+    i, j, len_lst = 1, 2, len(lst)
+    while i < len_lst:
+        if lst[i - 1] <= lst[i]:
+            i, j = j, j + 1
+        else:
+            lst[i - 1], lst[i] = lst[i], lst[i - 1]
+            i -= 1
+            if i == 0:
+                i, j = j, j + 1
+    return lst
 
 
 if __name__ == '__main__':
-    m = [10, 100, 1000]
-    for el in m:
-        rand_lst = [randint(-100, 100) for i in range(2*el + 1)]
-        print(f'm={el} - {timeit("median_search(rand_lst)", globals=globals(), number=10000)}')
+
+    m = int(input('Введите число m - '))
+    rand_lst = [randint(-100, 100) for _ in range(m * 2 + 1)]
+    print(f"Сорт-ка Шелла - {timeit('shell_sort(rand_lst[:])[m]', globals=globals(), number=10000)}")
+    print(f"Гномья сорт-ка - {timeit('gnome_sort(rand_lst[:])[m]', globals=globals(), number=10000)}")
 
 
 """
-m=10 - 0.2184666000539437
-m=100 - 5.006028800038621
-m=1000 - 68.96946449996904
+Введите число m - 10
+Сорт-ка Шелла - 0.12067050009500235
+Гномья сорт-ка - 0.2088970000622794
+
+Введите число m - 100
+Сорт-ка Шелла - 2.3972766998922452
+Гномья сорт-ка - 19.177614799933508
+
+Введите число m - 1000
+Сорт-ка Шелла - 50.38286429992877
+Гномья сортировка - очень долго (скорее всего ок. 40 мин)
+
+при timeit (number=1000)
+Введите число m - 1000
+Сорт-ка Шелла - 4.486613600049168
+Гномья сорт-ка - 234.62233789998572
 """

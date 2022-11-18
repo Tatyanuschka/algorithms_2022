@@ -53,25 +53,27 @@ def bubble_sort_smart(lst):
     return copy_lst
 
 
-rand_lst = [randint(-100, 100) for i in range(100)]
-# rand_lst = [i for i in range(100, -100, -1)]
-
+rand_lst = [randint(-100, 100) for _ in range(100)]
+rand_lst_sorted = [i for i in range(100, -100, -1)]  # изначально отсортиров.список
 
 print(f'Исходный массив: \n{rand_lst}')
-print(f'Отсортированный массив: \n{bubble_sort(rand_lst)}')
-# print(bubble_sort_smart(rand_lst))
+print(f'Отсортированный массив: \n{bubble_sort(rand_lst[:])}')
+print(f'Отсортированный массив после оптимизации: \n{bubble_sort_smart(rand_lst[:])}')
 
-print(f"Время bubble_sort - {timeit('bubble_sort(rand_lst)', globals=globals(), number=10000)}")
-print(f"Время bubble_sort_smart - {timeit('bubble_sort_smart(rand_lst)', globals=globals(), number=10000)}")
+print(f"Время bubble_sort - {timeit('bubble_sort(rand_lst[:])', globals=globals(), number=10000)}")
+print(f"Время bubble_sort_smart - {timeit('bubble_sort_smart(rand_lst[:])', globals=globals(), number=10000)}")
+
+print(f"Время bubble_sort на уже отсорт.списке - {timeit('bubble_sort(rand_lst_sorted[:])', globals=globals(), number=10000)}")
+print(f"Время bubble_sort_smart на уже отсорт.списке - {timeit('bubble_sort_smart(rand_lst_sorted[:])', globals=globals(), number=10000)}")
 
 
 """
-Время bubble_sort - 5.74462610000046
-Время bubble_sort_smart - 5.429651300015394
+Время bubble_sort - 6.070837799925357
+Время bubble_sort_smart - 5.769205500022508
 
 
 Если список уже отсортирован, то доработка алгоритма пузырьковой сортировки
 существенно оказывает влияние на время выполнения алгоритма
-Время bubble_sort - 11.946141100022942
-Время bubble_sort_smart - 0.12027959997067228
+Время bubble_sort на уже отсорт.списке - 12.209748199908063
+Время bubble_sort_smart на уже отсорт.списке - 0.13403810001909733
 """
